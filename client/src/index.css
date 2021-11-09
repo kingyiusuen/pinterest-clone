@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Hiragino Kaku Gothic Pro, Meiryo, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+}
+
+:root {
+  --red: rgb(230, 0, 35);
+  --blue: rgb(24, 119, 242);
+  --darkgray: rgb(51, 51, 51);
+  --gray: rgb(118, 118, 118);
+}
