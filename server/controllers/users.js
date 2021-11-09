@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const usersRouter = require('express').Router()
+const passport = require('passport')
 const User = require('../models/user')
 
 usersRouter.get('/', async (request, response) => {
@@ -54,17 +55,21 @@ usersRouter.post('/login', async (request, response) => {
 
   response
     .status(200)
-    .send({ token, username: user.username, name: user.name })
+    .send({ token: `BEARER ${token}`, username: user.username, name: user.name })
 })
 
-usersRouter.get('/:id', async (request, response) => {
-  const user = await User.findById(request.params.id)
-  if (user) {
-    response.json(user.toJSON())
-  } else {
-    response.status(404).end()
+usersRouter.get(
+  '/:username',
+  passport.authenticate('jwt', { session: false }),
+  async (request, response) => {
+    const user = await User.findOne(request.params.username)
+    if (user) {
+      response.json(user.toJSON())
+    } else {
+      response.status(404).end()
+    }
   }
-})
+)
 
 usersRouter.delete('/:id', async (request, response) => {
   await User.findByIdAndRemove(request.params.id)
