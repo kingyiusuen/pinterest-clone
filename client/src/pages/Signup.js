@@ -6,7 +6,6 @@ import FormBodyWrapper from '../components/Form/FormBodyWrapper'
 import FormFooter from '../components/Form/FormFooter'
 import FormLink from '../components/Form/FormLink'
 import FormButton from '../components/Form/FormButton'
-import { COLOR } from '../constants/styles'
 import { signup } from '../services/users'
 
 const SignupForm = ({ setUser }) => {
@@ -52,7 +51,7 @@ const SignupForm = ({ setUser }) => {
           <FormButton
             onClick={handleSignup}
             type="submit"
-            backgroundColor={COLOR.RED}
+            backgroundColor='red'
           >
             Sign Up
           </FormButton>

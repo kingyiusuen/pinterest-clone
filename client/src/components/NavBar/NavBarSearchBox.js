@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import SearchIcon from '@mui/icons-material/Search'
+import search from '../../services/unsplash'
 
 const NavBarSearchBoxWrapper = styled.div`
   flex: 1;
@@ -42,13 +43,30 @@ const NavBarSearchBoxContainer = styled.div`
   }
 `
 
-const NavBarSearchBox = () => {
+const NavBarSearchBox = ({ setFeedUnits }) => {
+  const [query, setQuery] = useState('')
+
+  const handleSearch = async (event) => {
+    event.preventDefault()
+    try {
+      const data = await search({ query: query })
+      setFeedUnits(data.results)  
+    } catch (exception) {
+      console.log(exception)
+    }
+  }
+
   return (
     <NavBarSearchBoxWrapper>
       <NavBarSearchBoxContainer>
         <SearchIcon />
-        <form>
-          <input type="text" placeholder="Search" />
+        <form onSubmit={handleSearch}>
+          <input
+            type="text"
+            placeholder="Search"
+            value={query}
+            onChange={event => setQuery(event.target.value)}
+          />
           <button type="submit"></button>
         </form>
       </NavBarSearchBoxContainer>

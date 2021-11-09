@@ -15,11 +15,11 @@ const NavBarContainer = styled.div`
   }
 `
 
-const NavBar = () => {
+const NavBar = ({ setFeedUnits }) => {
   return (
     <NavBarContainer>
       <NavBarLogo />
-      <NavBarSearchBox />
+      <NavBarSearchBox setFeedUnits={setFeedUnits} />
       <NavBarIconGroup />
     </NavBarContainer>
   )

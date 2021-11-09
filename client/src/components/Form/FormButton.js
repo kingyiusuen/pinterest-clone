@@ -11,7 +11,7 @@ const FormButton = styled.button`
   margin-bottom: 7px;
   padding: 1px 12px;
   font-size: 15px;
-  background-color: ${props => props.backgroundColor};
+  background-color: var(--${props => props.backgroundColor});
 
   &:hover {
     background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);

@@ -6,7 +6,6 @@ import FormBodyWrapper from '../components/Form/FormBodyWrapper'
 import FormFooter from '../components/Form/FormFooter'
 import FormLink from '../components/Form/FormLink'
 import FormButton from '../components/Form/FormButton'
-import { COLOR } from '../constants/styles'
 import { login } from '../services/users'
 
 const LoginForm = ({ setUser }) => {
@@ -51,13 +50,13 @@ const LoginForm = ({ setUser }) => {
           <FormButton
             onClick={handleLogin}
             type="submit"
-            backgroundColor={COLOR.RED}
+            backgroundColor='red'
           >
             Log In
           </FormButton>
           <FormButton
             onClick={demoLogin}
-            backgroundColor={COLOR.BLUE}
+            backgroundColor='blue'
           >
             Demo
           </FormButton>
