@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import SearchIcon from '@mui/icons-material/Search'
-import search from '../../services/unsplash'
+import { search } from '../../services/unsplash'
 
 const NavBarSearchBoxWrapper = styled.div`
   flex: 1;
@@ -49,7 +49,7 @@ const NavBarSearchBox = ({ setFeedUnits }) => {
   const handleSearch = async (event) => {
     event.preventDefault()
     try {
-      const data = await search({ query: query, per_page: 32 })
+      const data = await search({ query: query, per_page: 30 })
       setFeedUnits(data.results)  
     } catch (exception) {
       console.log(exception)

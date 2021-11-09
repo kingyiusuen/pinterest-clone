@@ -1,11 +1,22 @@
 import axios from 'axios'
 
-const accessKey = process.env.REACT_APP_ACCESS_KEY
-const baseUrl = `https://api.unsplash.com/search/photos/?client_id=${accessKey}`
+const baseUrl = 'https://api.unsplash.com'
+
+const unsplashServer = axios.create({
+  baseUrl: baseUrl,
+  headers: {
+    Authorization: `Client-ID ${process.env.REACT_APP_ACCESS_KEY}`
+  }
+})
 
 const search = async (params) => {
-  const response = await axios.get(baseUrl, { params })
+  const response = await unsplashServer.get(`${baseUrl}/search/photos/`, { params })
   return response.data
 }
 
-export default search
+const random = async (params) => {
+  const response = await unsplashServer.get(`${baseUrl}/photos/random/`, { params })
+  return response.data
+}
+
+export { search, random }
