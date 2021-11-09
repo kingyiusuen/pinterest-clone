@@ -3,7 +3,7 @@ import NavBar from '../components/NavBar/NavBar'
 import Feed from '../components/Feed/Feed'
 
 const Home = () => {
-  const [feedUnits, setFeedUnits] = useState([])
+  const [feedUnits, setFeedUnits] = useState(null)
 
   return (
     <div>

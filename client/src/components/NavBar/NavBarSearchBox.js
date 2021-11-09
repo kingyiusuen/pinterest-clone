@@ -49,7 +49,7 @@ const NavBarSearchBox = ({ setFeedUnits }) => {
   const handleSearch = async (event) => {
     event.preventDefault()
     try {
-      const data = await search({ query: query })
+      const data = await search({ query: query, per_page: 32 })
       setFeedUnits(data.results)  
     } catch (exception) {
       console.log(exception)
