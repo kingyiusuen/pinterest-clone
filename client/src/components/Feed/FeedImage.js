@@ -30,7 +30,7 @@ const ImageContainer = styled.div`
   }
 `
 
-const FeedImage = ({ image, handleOpenDialog }) => {
+const FeedImage = ({ src, handleOpenDialog }) => {
   const [showButton, setShowButton] = useState(false)
 
   return (
@@ -40,7 +40,7 @@ const FeedImage = ({ image, handleOpenDialog }) => {
         onMouseOver={() => setShowButton(true)}
         onMouseLeave={() => setShowButton(false)}
       >
-        <img src={image.urls.thumb} alt='' />
+        <img src={src} alt='' />
       </ImageWrapper>
       {
         showButton &&

@@ -1,25 +1,42 @@
 import React from 'react'
 import styled from 'styled-components'
-import Masonry from '@mui/lab/Masonry';
+import Masonry from 'react-masonry-css'
 import FeedUnit from './FeedUnit'
 
 const FeedWrapper = styled.div`
+  padding: 0;
   margin-top: 15px;
-  margin-bottom: 0px;
-  padding: 0 15px;
+
+  .my-masonry-grid {
+    display: flex;
+    width: auto;
+  }
+  .my-masonry-grid_column {
+    padding-left: 30px;
+    background-clip: padding-box;
+  }
 `
 
 const Feed = ({ feedUnits }) => {
+  const breakpoints = {
+    default: 4,
+    503: 1,
+    755: 2,
+    1007: 3,
+    1259: 4,
+    1511: 5,
+    1763: 6,
+    2015: 7,
+    2267: 8
+  };
+
   return (
     <FeedWrapper>
-      <Masonry columns={[ '500px', '700px', '900px', '1100px', '1300px' ]} spacing={1}>
+      <Masonry breakpointCols={breakpoints} className='my-masonry-grid'>
         {
           feedUnits !== null &&
           feedUnits.map((image, index) => (
-            <FeedUnit
-              image={image}
-              key={index}
-            />
+            <FeedUnit image={image} key={index} />
           ))
         }
       </Masonry>

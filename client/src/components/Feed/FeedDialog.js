@@ -40,7 +40,7 @@ const Backdrop = styled.div`
   -webkit-tap-highlight-color: transparent;
 `
 
-const FeedDialog = ({ image, openDialog, handleCloseDialog}) => {
+const FeedDialog = ({ src, openDialog, handleCloseDialog}) => {
 
   return (
     <FeedDialogWrapper
@@ -50,7 +50,7 @@ const FeedDialog = ({ image, openDialog, handleCloseDialog}) => {
     >
       <FeedDialogContainer>
         <ImageWrapper>
-          <img src={image.urls.thumb} alt='' />
+          <img src={src} alt='' />
         </ImageWrapper>
         <SaveButtonWrapper>
           <SaveButton href="/" />

@@ -3,7 +3,15 @@ import styled from 'styled-components'
 import FeedImage from './FeedImage'
 import FeedDialog from './FeedDialog'
 
-const FeedUnitWrapper = styled.div``
+const FeedUnitWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  margin-bottom: 10px;
+`
+
+const FeedUnitContainer = styled.div`
+  margin: 0 auto;
+`
 
 const FeedUnit = ({ image }) => {
   const [openDialog, setOpenDialog] = useState(false)
@@ -11,12 +19,14 @@ const FeedUnit = ({ image }) => {
   const handleCloseDialog = () => setOpenDialog(false)
   return (
     <FeedUnitWrapper>
-      <FeedImage image={image} handleOpenDialog={handleOpenDialog} />
-      <FeedDialog
-        image={image}
-        openDialog={openDialog}
-        handleCloseDialog={handleCloseDialog}
-      />
+      <FeedUnitContainer>
+        <FeedImage src={`${image.urls.raw}&w=236`} handleOpenDialog={handleOpenDialog} />
+        <FeedDialog
+          src={`${image.urls.raw}&w=400`}
+          openDialog={openDialog}
+          handleCloseDialog={handleCloseDialog}
+        />
+      </FeedUnitContainer>
     </FeedUnitWrapper>
   )
 }
