@@ -3,7 +3,7 @@ node_modules
 
 # testing
 /coverage
-/requests
+requests
 
 # production
 /build

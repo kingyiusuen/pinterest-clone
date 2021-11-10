@@ -55,14 +55,14 @@ usersRouter.post('/login', async (request, response) => {
 
   response
     .status(200)
-    .send({ token: `BEARER ${token}`, username: user.username, name: user.name })
+    .send({ token: `Bearer ${token}`, username: user.username, name: user.name })
 })
 
 usersRouter.get(
   '/:username',
   passport.authenticate('jwt', { session: false }),
   async (request, response) => {
-    const user = await User.findOne(request.params.username)
+    const user = await User.findOne({ username: request.params.username })
     if (user) {
       response.json(user.toJSON())
     } else {
