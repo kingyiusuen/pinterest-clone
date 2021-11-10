@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import SaveButton from './SaveButton'
 
@@ -31,14 +31,23 @@ const ImageContainer = styled.div`
 `
 
 const FeedImage = ({ image, handleOpenDialog }) => {
+  const [showButton, setShowButton] = useState(false)
+
   return (
     <ImageContainer>
-      <ImageWrapper onClick={handleOpenDialog}>
+      <ImageWrapper
+        onClick={handleOpenDialog}
+        onMouseOver={() => setShowButton(true)}
+        onMouseLeave={() => setShowButton(false)}
+      >
         <img src={image.urls.thumb} alt='' />
       </ImageWrapper>
-      <SaveButtonWrapper>
-        <SaveButton href="/" />
-      </SaveButtonWrapper>
+      {
+        showButton &&
+        <SaveButtonWrapper>
+          <SaveButton href="/" />
+        </SaveButtonWrapper>
+      }
     </ImageContainer>
   )
 }
