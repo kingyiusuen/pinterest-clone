@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import SaveButton from './SaveButton'
 
@@ -6,15 +6,13 @@ const SaveButtonWrapper = styled.div``
 const ImageWrapper = styled.div``
 
 const ImageContainer = styled.div`
+  position: relative;
+
   img {
     display: block;
-    position: absolute;
     cursor: zoom-in;
     border-radius: 16px;
     object-fit: cover;
-    margin: ${props => props.margin}px;
-    top: ${props => props.top}px;
-    left: ${props => props.left}px;
   }
 
   &:hover img {
@@ -23,8 +21,8 @@ const ImageContainer = styled.div`
 
   ${SaveButtonWrapper} {
     position: absolute;
-    top: ${props => props.top + props.margin}px;
-    left: ${props => props.left + props.width + props.margin - 90}px;
+    top: 0;
+    right: 0;
   }
 
   &:hover > ${SaveButtonWrapper} {
@@ -32,25 +30,13 @@ const ImageContainer = styled.div`
   }
 `
 
-const FeedImage = ({ photo, top, left, margin, handleOpenDialog }) => {
-  const [showSaveButton, setShowSaveButton] = useState(false)
-  const handleShowSaveButton = () => setShowSaveButton(true)
-  const handleHideSaveButton = () => setShowSaveButton(false)
-
+const FeedImage = ({ image, handleOpenDialog }) => {
   return (
-    <ImageContainer
-      left={left}
-      top={top}
-      margin={margin}
-      height={photo.height}
-      width={photo.width}
-      onMouseEnter={handleShowSaveButton}
-      onMouseLeave={handleHideSaveButton}
-    >
+    <ImageContainer>
       <ImageWrapper onClick={handleOpenDialog}>
-        <img alt='' {...photo} />
+        <img src={image.urls.thumb} alt='' />
       </ImageWrapper>
-      <SaveButtonWrapper style={{ display: showSaveButton ? 'block': 'none' }}>
+      <SaveButtonWrapper>
         <SaveButton href="/" />
       </SaveButtonWrapper>
     </ImageContainer>

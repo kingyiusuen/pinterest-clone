@@ -1,53 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
-import Gallery from 'react-photo-gallery'
+import Masonry from '@mui/lab/Masonry';
 import FeedUnit from './FeedUnit'
 
 const FeedWrapper = styled.div`
   margin-top: 15px;
   margin-bottom: 0px;
+  padding: 0 15px;
 `
 
 const Feed = ({ feedUnits }) => {
-
-  const columns = containerWidth => {
-    let columns = 9
-    if (containerWidth <= 500) columns = 2
-    else if (containerWidth <= 700) columns = 3
-    else if (containerWidth <= 900) columns = 4
-    else if (containerWidth <= 1100) columns = 5
-    else if (containerWidth <= 1300) columns = 6
-    else if (containerWidth <= 1500) columns = 7
-    else if (containerWidth <= 1700) columns = 8
-    return columns
-  }
-
-  const format = feedUnits => {
-    return feedUnits.map(image => ({
-      key: image.id,
-      src: image.urls.thumb,
-      //zoom: image.urls.small,
-      width: 200,
-      height: image.height / (image.width / 200)
-    }))
-  }
-
-  const imageRenderer = ({key, direction, ...props }) => {
-    return <FeedUnit key={key} {...props} />
-  }
-
   return (
     <FeedWrapper>
-      {
-        feedUnits !== null &&
-        <Gallery
-          photos={format(feedUnits)}
-          direction={'column'}
-          columns={columns}
-          margin={6}
-          renderImage={imageRenderer}
-        />
-      }
+      <Masonry columns={[ '500px', '700px', '900px', '1100px', '1300px' ]} spacing={1}>
+        {
+          feedUnits !== null &&
+          feedUnits.map((image, index) => (
+            <FeedUnit
+              image={image}
+              key={index}
+            />
+          ))
+        }
+      </Masonry>
     </FeedWrapper>
   )
 }

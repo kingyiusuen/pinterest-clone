@@ -5,22 +5,15 @@ import FeedDialog from './FeedDialog'
 
 const FeedUnitWrapper = styled.div``
 
-const FeedUnit = ({ photo, top, left, margin }) => {
+const FeedUnit = ({ image }) => {
   const [openDialog, setOpenDialog] = useState(false)
   const handleOpenDialog = () => setOpenDialog(true)
   const handleCloseDialog = () => setOpenDialog(false)
-
   return (
     <FeedUnitWrapper>
-      <FeedImage
-        photo={photo}
-        top={top}
-        left={left}
-        margin={margin}
-        handleOpenDialog={handleOpenDialog}
-      />
+      <FeedImage image={image} handleOpenDialog={handleOpenDialog} />
       <FeedDialog
-        photo={photo}
+        image={image}
         openDialog={openDialog}
         handleCloseDialog={handleCloseDialog}
       />
