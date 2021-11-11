@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import Masonry from 'react-masonry-css'
-import FeedUnit from './FeedUnit'
+import Pin from './Pin'
 
-const FeedWrapper = styled.div`
+const PinGridWrapper = styled.div`
   padding: 0;
   margin-top: 15px;
 
@@ -11,13 +11,14 @@ const FeedWrapper = styled.div`
     display: flex;
     width: auto;
   }
+
   .my-masonry-grid_column {
     padding-left: 30px;
     background-clip: padding-box;
   }
 `
 
-const Feed = ({ feedUnits }) => {
+const PinGrid = ({ feedUnits }) => {
   const breakpoints = {
     default: 4,
     503: 1,
@@ -31,17 +32,17 @@ const Feed = ({ feedUnits }) => {
   };
 
   return (
-    <FeedWrapper>
+    <PinGridWrapper>
       <Masonry breakpointCols={breakpoints} className='my-masonry-grid'>
         {
           feedUnits !== null &&
           feedUnits.map((image, index) => (
-            <FeedUnit image={image} key={index} />
+            <Pin image={image} key={index} />
           ))
         }
       </Masonry>
-    </FeedWrapper>
+    </PinGridWrapper>
   )
 }
 
-export default Feed
+export default PinGrid

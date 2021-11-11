@@ -1,37 +1,43 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-const SaveButtonContainer = styled.div`
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  color: white;
-  border-radius: 24px;
-  height: 48px;
-  width: 70px;
+const isSavedStyle = css`
+  background-color: black;
+`
+
+const notSavedStyle = css`
   background-color: var(--red);
-  font-size: 14px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
 
   &:hover {
     background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
   }
-
-  a {
-    text-decoration: none;
-    color: white;
-  }
 `
 
-const SaveButton = ({ href }) => {
+const Button = styled.button`
+  font-weight: 700;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 24px;
+  height: 48px;
+  padding: 0 17px;
+  margin: 10px;
+  ${props => props.isSaved ? isSavedStyle : notSavedStyle}
+`
+
+const SaveButton = ({ imageUrl, isSaved }) => {
+  //const handleOnClick = () => {
+  //  isSaved ? deletePin(imageUrl) : savePin(imageUrl)
+  //}
+
   return (
-    <SaveButtonContainer>
-      <a href={href}>Save</a>
-    </SaveButtonContainer>
+    <Button
+      isSaved={isSaved}
+      /*onClick={handleOnClick}*/
+    >
+      {isSaved ? 'Saved' : 'Save'}
+    </Button>
   )
 }
 
 export default SaveButton
-export { SaveButtonContainer }
