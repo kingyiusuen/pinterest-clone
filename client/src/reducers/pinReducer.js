@@ -1,9 +1,15 @@
-import { GET_SAVED_PINS, GET_RANDOM_PINS, SEARCH_PINS, SAVE_PIN, DELETE_SAVED_PIN } from '../actions/pin'
+import {
+  GET_SAVED_PINS,
+  GET_RANDOM_PINS,
+  SEARCH_PINS,
+  SAVE_PIN,
+  DELETE_SAVED_PIN,
+} from "../actions/pin";
 
 const INITIAL_STATE = {
   display: [],
   saved: [],
-}
+};
 
 const pinReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -11,30 +17,30 @@ const pinReducer = (state = INITIAL_STATE, action) => {
       return {
         display: state.display,
         saved: action.photoUrls,
-      }
+      };
     case GET_RANDOM_PINS:
       return {
         display: action.photoUrls,
         saved: state.saved,
-      }
+      };
     case SEARCH_PINS:
       return {
         display: action.photoUrls,
         saved: state.saved,
-      }
+      };
     case SAVE_PIN:
       return {
         display: state.display,
         saved: [...state.saved, action.photoUrl],
-      }
+      };
     case DELETE_SAVED_PIN:
       return {
         display: state.display,
-        saved: state.saved.filter(url => url !== action.photoUrl),
-      }
+        saved: state.saved.filter((url) => url !== action.photoUrl),
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default pinReducer
+export default pinReducer;

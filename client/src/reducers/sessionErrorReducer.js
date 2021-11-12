@@ -1,16 +1,20 @@
-import { CLEAR_SESSION_ERROR, RECEIVE_SESSION_ERROR, SET_CURRENT_USER } from '../actions/session'
+import {
+  CLEAR_SESSION_ERROR,
+  RECEIVE_SESSION_ERROR,
+  SET_CURRENT_USER,
+} from "../actions/session";
 
-const sessionErrorReducer = (state = '', action) => {
+const sessionErrorReducer = (state = "", action) => {
   switch (action.type) {
     case RECEIVE_SESSION_ERROR:
-      return action.error
+      return action.error;
     case CLEAR_SESSION_ERROR:
-      return ''
+      return "";
     case SET_CURRENT_USER:
-      return ''
+      return "";
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default sessionErrorReducer
+export default sessionErrorReducer;

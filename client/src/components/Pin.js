@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import ModalUnstyled from '@mui/core/ModalUnstyled'
-import { styled } from '@mui/system'
-import { useDispatch } from 'react-redux'
+import ModalUnstyled from "@mui/core/ModalUnstyled";
+import { styled } from "@mui/system";
+import { useDispatch } from "react-redux";
 
-import './Pin.css'
-import { savePin, deleteSavedPin } from '../actions/pin'
+import "./Pin.css";
+import { savePin, deleteSavedPin } from "../actions/pin";
 
 const Dialog = styled(ModalUnstyled)`
   position: fixed;
@@ -17,9 +17,9 @@ const Dialog = styled(ModalUnstyled)`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
-const Backdrop = styled('div')`
+const Backdrop = styled("div")`
   z-index: -1;
   position: fixed;
   right: 0;
@@ -28,50 +28,51 @@ const Backdrop = styled('div')`
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-tap-highlight-color: transparent;
-`
+`;
 
 const SaveButton = ({ userId, photoUrl, isSaved }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const handleOnClick = event => {
-    event.preventDefault()
+  const handleOnClick = (event) => {
+    event.preventDefault();
     isSaved
       ? dispatch(deleteSavedPin(userId, photoUrl))
-      : dispatch(savePin(userId, photoUrl))
-  }
+      : dispatch(savePin(userId, photoUrl));
+  };
 
   return (
     <button
       onClick={handleOnClick}
-      className={`save-btn ${isSaved ? 'save-btn--active' : 'save-btn--inactive'}`}
+      className={`save-btn ${
+        isSaved ? "save-btn--active" : "save-btn--inactive"
+      }`}
     >
-      {isSaved ? 'Saved' : 'Save'}
+      {isSaved ? "Saved" : "Save"}
     </button>
-  )
-}
+  );
+};
 
 const Pin = ({ userId, photoUrl, isSaved }) => {
-  const [openDialog, setOpenDialog] = useState(false)
-  const handleOpenDialog = () => setOpenDialog(true)
-  const handleCloseDialog = () => setOpenDialog(false)
+  const [openDialog, setOpenDialog] = useState(false);
+  const handleOpenDialog = () => setOpenDialog(true);
+  const handleCloseDialog = () => setOpenDialog(false);
 
-  const [showButton, setShowButton] = useState(false)
+  const [showButton, setShowButton] = useState(false);
 
   return (
     <div>
-      <div className='pin__wrapper'>
+      <div className="pin__wrapper">
         <div
-          className='pin__container'
+          className="pin__container"
           onMouseOver={() => setShowButton(true)}
           onMouseLeave={() => setShowButton(false)}
         >
           <div onClick={handleOpenDialog}>
-            <img src={`${photoUrl}&w=236`} alt='' />
+            <img src={`${photoUrl}&w=236`} alt="" />
           </div>
-          {
-            showButton &&
+          {showButton && (
             <SaveButton userId={userId} photoUrl={photoUrl} isSaved={isSaved} />
-          }
+          )}
         </div>
       </div>
       <Dialog
@@ -79,13 +80,13 @@ const Pin = ({ userId, photoUrl, isSaved }) => {
         onClose={handleCloseDialog}
         BackdropComponent={Backdrop}
       >
-        <div className='dialog__container'>
-          <img src={`${photoUrl}&w=400`} alt='' />
+        <div className="dialog__container">
+          <img src={`${photoUrl}&w=400`} alt="" />
           <SaveButton userId={userId} photoUrl={photoUrl} isSaved={isSaved} />
         </div>
       </Dialog>
     </div>
-  )
-}
+  );
+};
 
-export default Pin
+export default Pin;

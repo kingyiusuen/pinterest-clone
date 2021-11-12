@@ -1,28 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 
-import { getSavedPins, getRandomPins } from '../actions/pin'
-import NavBar from '../components/NavBar'
-import PinGrid from '../components/PinGrid'
+import { getSavedPins, getRandomPins } from "../actions/pin";
+import NavBar from "../components/NavBar";
+import PinGrid from "../components/PinGrid";
 
 const Home = () => {
-  const dispatch = useDispatch()
-  const session = useSelector(state => state.session)
+  const dispatch = useDispatch();
+  const session = useSelector((state) => state.session);
   useEffect(() => {
-    dispatch(getSavedPins(session.user.id))
-    dispatch(getRandomPins())
-  }, [dispatch, session.user.id])
+    dispatch(getSavedPins(session.user.id));
+    dispatch(getRandomPins());
+  }, [dispatch, session.user.id]);
 
-  const photoUrls = useSelector(state => state.pin.display)
-  const savedPins = useSelector(state => state.pin.saved)
+  const photoUrls = useSelector((state) => state.pin.display);
+  const savedPins = useSelector((state) => state.pin.saved);
 
   return (
     <div>
       <NavBar isHome />
       <PinGrid photoUrls={photoUrls} savedPins={savedPins} />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

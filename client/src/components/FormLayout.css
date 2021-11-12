@@ -36,11 +36,15 @@
   margin: 0 auto;
 }
 
+.form__body {
+  width: 100%;
+}
+
 .form__input {
   width: 100%;
   font-size: 16px;
   height: 48px;
-  border:1px solid;
+  border: 1px solid;
   border-color: #ddd;
   border-radius: 16px;
   padding: 1px 16px;
@@ -94,6 +98,7 @@
   font-weight: 700;
   text-decoration: none;
   color: black;
+  margin-top: 7px;
 }
 
 .form__btn {
