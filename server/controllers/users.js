@@ -6,13 +6,18 @@ const User = require('../models/user')
 
 usersRouter.get('/', async (request, response) => {
   const users = await User.find({})
-  response.json(users)
+  return response.json(users)
 })
 
 usersRouter.post('/signup', async (request, response) => {
   const body = request.body
 
-  const user = await User.findOne({ username: body.username })
+  let user
+  try {
+    user = await User.findOne({ username: body.username })
+  } catch (exception) {
+    return response.status(500).json({error: 'A database error has occurred'})
+  }
   if (user) {
     return response.status(400).json({error: 'The username has already been taken'})
   }
@@ -26,14 +31,24 @@ usersRouter.post('/signup', async (request, response) => {
     passwordHash: passwordHash,
   })
 
-  const savedUser = await newUser.save()
-  response.json(savedUser)  
+  try {
+    const savedUser = await newUser.save()
+    return response.json(savedUser)
+  } catch (exception) {
+    return response.status(500).json({error: 'A database error has occurred'})
+  }
 })
 
 usersRouter.post('/login', async (request, response) => {
   const body = request.body
 
-  const user = await User.findOne({ username: body.username })
+  let user
+  try {
+    user = await User.findOne({ username: body.username })
+  } catch (exception) {
+    return response.status(500).json({error: 'A database error has occurred'})
+  }
+
   const isPasswordCorrect = user === null
     ? false
     : await bcrypt.compare(body.password, user.passwordHash)
@@ -51,23 +66,21 @@ usersRouter.post('/login', async (request, response) => {
   const token = jwt.sign(
     payload,
     process.env.SECRET,
-    { expiresIn: 3600 }
+    { expiresIn: 3600 },
   )
 
-  response
-    .status(200)
-    .send({ token: `Bearer ${token}` })
+  return response.status(200).send({ token: `Bearer ${token}` })
 })
 
 usersRouter.get(
   '/:id',
   passport.authenticate('jwt', { session: false }),
   async (request, response) => {
-    const user = await User.findById(request.params.id)
-    if (user) {
-      response.json(user)
-    } else {
-      response.status(404).end()
+    try {
+      const user = await User.findById(request.params.id)
+      return response.json(user)
+    } catch (exception) {
+      return response.status(500).json({error: 'A database error has occurred'})
     }
   }
 )
@@ -76,12 +89,16 @@ usersRouter.put(
   '/:id/save-pin',
   passport.authenticate('jwt', { session: false }),
   async (request, response) => {
-    const user = await User.findByIdAndUpdate(
-      request.params.id,
-      { $addToSet: { savedPins: request.body.photoUrl } },
-      { new: true }
-    )
-    response.json(user)
+    try {
+      const user = await User.findByIdAndUpdate(
+        request.params.id,
+        { $addToSet: { savedPins: request.body.photoUrl } },
+        { new: true },
+      )
+      return response.json(user)
+    } catch (exception) {
+      return response.status(500).json({error: 'A database error has occurred'})
+    }
   }
 )
 
@@ -89,14 +106,17 @@ usersRouter.put(
   '/:id/delete-pin',
   passport.authenticate('jwt', { session: false }),
   async (request, response) => {
-    const user = await User.findByIdAndUpdate(
-      request.params.id,
-      { $pull: { savedPins: request.body.photoUrl } },
-      { new: true }
-    )
-    response.json(user)
+    try {
+      const user = await User.findByIdAndUpdate(
+        request.params.id,
+        { $pull: { savedPins: request.body.photoUrl } },
+        { new: true },
+      )
+      return response.json(user)  
+    } catch (exception) {
+      return response.status(500).json({error: 'A database error has occurred'})
+    }
   }
 )
-
 
 module.exports = usersRouter
