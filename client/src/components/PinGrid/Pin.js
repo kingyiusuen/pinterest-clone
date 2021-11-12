@@ -14,7 +14,7 @@ const PinContainer = styled.div`
 `
 
 const SaveButtonWrapper = styled.div``
-const ImageWrapper = styled.div``
+const PhotoWrapper = styled.div``
 
 const DialogWrapper = styled(ModalUnstyled)`
   position: fixed;
@@ -55,14 +55,14 @@ const Backdrop = styled.div`
 const Box = styled.div`
   position: relative;
 
-  ${ImageWrapper} > img {
+  ${PhotoWrapper} > img {
     display: block;
     cursor: zoom-in;
     border-radius: 16px;
     object-fit: cover;
   }
 
-  &:hover ${ImageWrapper} > img {
+  &:hover ${PhotoWrapper} > img {
     filter: brightness(70%);
   }
 
@@ -77,7 +77,7 @@ const Box = styled.div`
   }
 `
 
-const Pin = ({ image }) => {
+const Pin = ({ userId, photoUrl, isSaved }) => {
   const [openDialog, setOpenDialog] = useState(false)
   const handleOpenDialog = () => setOpenDialog(true)
   const handleCloseDialog = () => setOpenDialog(false)
@@ -92,13 +92,13 @@ const Pin = ({ image }) => {
           onMouseOver={() => setShowButton(true)}
           onMouseLeave={() => setShowButton(false)}
         >
-          <ImageWrapper onClick={handleOpenDialog}>
-            <img src={`${image.urls.raw}&w=236`} alt='' />
-          </ImageWrapper>
+          <PhotoWrapper onClick={handleOpenDialog}>
+            <img src={`${photoUrl}&w=236`} alt='' />
+          </PhotoWrapper>
           {
             showButton &&
             <SaveButtonWrapper>
-              <SaveButton href="/" isSaved={false} />
+              <SaveButton userId={userId} photoUrl={photoUrl} isSaved={isSaved} />
             </SaveButtonWrapper>
           }
         </Box>
@@ -109,11 +109,11 @@ const Pin = ({ image }) => {
           BackdropComponent={Backdrop}
         >
           <DialogContainer>
-            <ImageWrapper>
-              <img src={`${image.urls.raw}&w=400`} alt='' />
-            </ImageWrapper>
+            <PhotoWrapper>
+              <img src={`${photoUrl}&w=400`} alt='' />
+            </PhotoWrapper>
             <SaveButtonWrapper>
-              <SaveButton href="/" />
+              <SaveButton userId={userId} photoUrl={photoUrl} isSaved={isSaved} />
             </SaveButtonWrapper>
           </DialogContainer>
         </DialogWrapper>

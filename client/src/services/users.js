@@ -1,15 +1,25 @@
 import axios from 'axios'
 
-const baseUrl = '/api/users'
+export const instance = axios.create({
+  baseURL: '/api/users',
+})
 
-const signup = async (newObject) => {
-  const response = await axios.post(`${baseUrl}/signup`, newObject)
-  return response.data
+export const signup = async userData => {
+  return await instance.post('/signup', userData)
 }
 
-const login = async (credentials) => {
-  const response = await axios.post(`${baseUrl}/login`, credentials)
-  return response.data
+export const login = async userData => {
+  return await instance.post('/login', userData)
 }
 
-export { signup, login }
+export const getProfile = async userId => {
+  return await instance.get(`/${userId}`)
+}
+
+export const savePin = async (userId, param) => {
+  return await instance.put(`/${userId}/savePin`, param)
+}
+
+export const deleteSavedPin = async (userId, param) => {
+  return await instance.put(`/${userId}/deletePin`, param)
+}

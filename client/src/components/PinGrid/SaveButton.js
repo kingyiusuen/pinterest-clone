@@ -1,4 +1,6 @@
+import { useDispatch } from 'react-redux'
 import styled, { css } from 'styled-components'
+import { savePin, deleteSavedPin } from '../../actions/pin'
 
 const isSavedStyle = css`
   background-color: black;
@@ -25,15 +27,20 @@ const Button = styled.button`
   ${props => props.isSaved ? isSavedStyle : notSavedStyle}
 `
 
-const SaveButton = ({ imageUrl, isSaved }) => {
-  //const handleOnClick = () => {
-  //  isSaved ? deletePin(imageUrl) : savePin(imageUrl)
-  //}
+const SaveButton = ({ userId, photoUrl, isSaved }) => {
+  const dispatch = useDispatch()
+
+  const handleOnClick = event => {
+    event.preventDefault()
+    isSaved
+      ? dispatch(deleteSavedPin(userId, photoUrl))
+      : dispatch(savePin(userId, photoUrl))
+  }
 
   return (
     <Button
+      onClick={handleOnClick}
       isSaved={isSaved}
-      /*onClick={handleOnClick}*/
     >
       {isSaved ? 'Saved' : 'Save'}
     </Button>

@@ -15,12 +15,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  savedPins: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Pin',
-    }
-  ],
+  savedPins: {
+    type: [String],
+  },
 })
 
 userSchema.plugin(uniqueValidator)

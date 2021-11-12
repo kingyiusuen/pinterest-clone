@@ -1,70 +1,62 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import FormContainer from '../components/Form/FormContainer'
-import FormHeader from '../components/Form/FormHeader'
-import FormBodyWrapper from '../components/Form/FormBodyWrapper'
-import FormFooter from '../components/Form/FormFooter'
-import FormLink from '../components/Form/FormLink'
+import React from 'react'
+
+import { useDispatch } from 'react-redux'
+
+import Form from '../components/Form/Form'
 import FormButton from '../components/Form/FormButton'
-import { login } from '../services/users'
+import FormLink from '../components/Form/FormLink'
+import { login } from '../actions/session'
 
-const LoginForm = ({ setUser }) => {
-  const navigate = useNavigate()
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+const LoginForm = () => {
+  const dispatch = useDispatch()
 
-  const handleLogin = async (event) => {
+  const handleLogin = (event, userData) => {
     event.preventDefault()
-    try {
-      const user = await login({username, password})
-      setUsername('')
-      setPassword('')
-      navigate('/')
-    } catch (exception) {
-      console.log(exception)
-    }
-
+    dispatch(login(userData))
   }
 
-  const demoLogin = () => {
-    navigate('/')
+  const handleUserLogin = event => {
+    const userData = {
+      username: event.target.username.value,
+      password: event.target.password.value,
+    }
+    handleLogin(event, userData)
+  }
+
+  const handleDemoLogin = event => {
+    const userData = {
+      username: 'john.doe',
+      password: 'johndoe',
+    }
+    handleLogin(event, userData)
   }
 
   return (
-    <FormContainer>
-      <FormHeader />
-      <FormBodyWrapper>
-        <form>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={({ target }) => setUsername(target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={({ target }) => setPassword(target.value)}
-          />
-          <FormButton
-            onClick={handleLogin}
-            type="submit"
-            backgroundColor='red'
-          >
-            Log In
-          </FormButton>
-          <FormButton
-            onClick={demoLogin}
-            backgroundColor='blue'
-          >
-            Demo
-          </FormButton>
-          <FormLink to='/signup'>Not on Pinterest yet? Sign up</FormLink>
-        </form>
-        </FormBodyWrapper>
-      <FormFooter />
-    </FormContainer>
+    <Form onSubmit={handleUserLogin}>
+      <input
+        type="text"
+        placeholder="Username"
+        name="username"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        name="password"
+      />
+      <FormButton
+        type="submit"
+        backgroundColor='red'
+      >
+        Log In
+      </FormButton>
+      <FormButton
+        onClick={handleDemoLogin}
+        backgroundColor='blue'
+      >
+        Demo
+      </FormButton>
+      <FormLink to='/signup'>Not on Pinterest yet? Sign up</FormLink>
+    </Form>
   )
 }
 

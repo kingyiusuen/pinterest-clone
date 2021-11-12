@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from "react-router-dom"
 import styled from 'styled-components'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import LogoutIcon from '@mui/icons-material/Logout'
 import PinterestIcon from '@mui/icons-material/Pinterest'
 import SearchIcon from '@mui/icons-material/Search'
-import { search } from '../../services/unsplash'
+import { searchPins } from '../../actions/pin'
+import { logout } from '../../actions/session'
 
 const NavBarContainer = styled.div`
   display: flex;
@@ -25,7 +27,7 @@ const LogoWrapper = styled.div`
 
   .MuiSvgIcon-root:hover {
     border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.04);
+    background-color: var(--lightgray);
     cursor: pointer;
   }
 `
@@ -74,7 +76,6 @@ const SearchBoxContainer = styled.div`
 `
 
 const IconGroupWrapper = styled.div`
-  display: flex;
   padding-left: 10px;
 
   .MuiSvgIcon-root {
@@ -88,18 +89,20 @@ const IconGroupWrapper = styled.div`
   }
 `
 
-const NavBar = ({ setFeedUnits }) => {
-  const [query, setQuery] = useState('')
+const IconGroupContainer = styled.div`
+  display: flex;
+`
+const LogoutIconWrapper = styled.div``
 
-  const handleSearch = async (event) => {
+const NavBar = () => {
+  const dispatch = useDispatch()
+
+  const handleSearch = event => {
     event.preventDefault()
-    try {
-      const data = await search({ query: query, per_page: 30 })
-      setFeedUnits(data.results)  
-    } catch (exception) {
-      console.log(exception)
-    }
+    dispatch(searchPins(event.target.query.value))
   }
+
+  const handleLogout = () => dispatch(logout())
 
   return (
     <NavBarContainer>
@@ -111,18 +114,23 @@ const NavBar = ({ setFeedUnits }) => {
           <SearchIcon />
           <form onSubmit={handleSearch}>
             <input
-              type="text"
-              placeholder="Search"
-              value={query}
-              onChange={event => setQuery(event.target.value)}
+              type='text'
+              placeholder='Search'
+              name='query'
             />
-            <button type="submit"></button>
+            <button type='submit'></button>
           </form>
         </SearchBoxContainer>
       </SearchBoxWrapper>
       <IconGroupWrapper>
-        <Link to="/login"><AccountCircleIcon /></Link>
-        <Link to="/login"><LogoutIcon /></Link>
+        <IconGroupContainer>
+          <Link to='/profile'>
+            <AccountCircleIcon />
+          </Link>
+          <LogoutIconWrapper onClick={handleLogout}>
+            <LogoutIcon />
+          </LogoutIconWrapper>
+        </IconGroupContainer>
       </IconGroupWrapper>
     </NavBarContainer>
   )

@@ -14,7 +14,7 @@ usersRouter.post('/signup', async (request, response) => {
 
   const user = await User.findOne({ username: body.username })
   if (user) {
-    return response.status(400).json({error: 'Username already exists'})
+    return response.status(400).json({error: 'The username has already been taken'})
   }
 
   const saltRounds = 10
@@ -43,8 +43,9 @@ usersRouter.post('/login', async (request, response) => {
   }
 
   const payload = {
-    username: user.username,
     id: user._id,
+    username: user.username,
+    name: user.name,
   }
 
   const token = jwt.sign(
@@ -55,25 +56,47 @@ usersRouter.post('/login', async (request, response) => {
 
   response
     .status(200)
-    .send({ token: `Bearer ${token}`, username: user.username, name: user.name })
+    .send({ token: `Bearer ${token}` })
 })
 
 usersRouter.get(
-  '/:username',
-  passport.authenticate('jwt', { session: false }),
+  '/:id',
+  //passport.authenticate('jwt', { session: false }),
   async (request, response) => {
-    const user = await User.findOne({ username: request.params.username })
+    const user = await User.findById(request.params.id)
     if (user) {
-      response.json(user.toJSON())
+      response.json(user)
     } else {
       response.status(404).end()
     }
   }
 )
 
-usersRouter.delete('/:id', async (request, response) => {
-  await User.findByIdAndRemove(request.params.id)
-  response.status(204).end()
-})
+usersRouter.put(
+  '/:id/savePin',
+  //passport.authenticate('jwt', { session: false }),
+  async (request, response) => {
+    const user = await User.findByIdAndUpdate(
+      request.params.id,
+      { $addToSet: { savedPins: request.body.photoUrl } },
+      { new: true }
+    )
+    response.json(user)
+  }
+)
+
+usersRouter.put(
+  '/:id/deletePin',
+  //passport.authenticate('jwt', { session: false }),
+  async (request, response) => {
+    const user = await User.findByIdAndUpdate(
+      request.params.id,
+      { $pull: { savedPins: request.body.photoUrl } },
+      { new: true }
+    )
+    response.json(user)
+  }
+)
+
 
 module.exports = usersRouter
