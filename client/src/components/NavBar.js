@@ -5,7 +5,7 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import PinterestIcon from '@mui/icons-material/Pinterest'
 import SearchIcon from '@mui/icons-material/Search'
 import { useDispatch } from 'react-redux'
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 import './NavBar.css'
 import { searchPins } from '../actions/pin'
@@ -24,7 +24,7 @@ const NavBar = ({ isHome }) => {
   return (
     <div className='nav-bar'>
       <div className='nav-bar__icon nav-bar__icon--red'>
-        <Link to="/"><PinterestIcon /></Link>
+        <Link to='/'><PinterestIcon /></Link>
       </div>
       <button className={`nav-bar__btn ${isHome ? 'nav-bar__btn--active' : 'nav-bar__btn--inactive'}`}>
         <Link to='/'>Home</Link>

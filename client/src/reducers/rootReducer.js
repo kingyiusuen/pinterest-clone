@@ -1,7 +1,7 @@
-import { combineReducers } from "redux"
+import { combineReducers } from 'redux'
 
-import pinReducer from "./pinReducer"
-import sessionReducer from "./sessionReducer"
+import pinReducer from './pinReducer'
+import sessionReducer from './sessionReducer'
 import sessionErrorReducer from './sessionErrorReducer'
 
 const rootReducer = combineReducers({

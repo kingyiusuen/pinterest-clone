@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useForm } from "react-hook-form"
+import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -31,14 +31,14 @@ const LoginFormLayout = () => {
         type='text'
         placeholder='Username'
         className={`form__input ${errors.username ? 'form__input--error' : ''}`}
-        {...register("username", { required: true })}
+        {...register('username', { required: true })}
       />
       {errors.username && <p className='form__error'>Username is required</p>}
       <input
         type='password'
         placeholder='Password'
         className={`form__input ${errors.password ? 'form__input--error' : ''}`}
-        {...register("password", { required: true })}
+        {...register('password', { required: true })}
       />
       {errors.password && <p className='form__error'>Password is required</p>}
       {sessionError && <p className='form__error'>{sessionError}</p>}

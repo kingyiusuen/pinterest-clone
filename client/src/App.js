@@ -15,11 +15,11 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<FormLayout />}>
-          <Route path="/login" element={<NotRequireAuth><Login /></NotRequireAuth>} />
-          <Route path="/signup" element={<NotRequireAuth><Signup /></NotRequireAuth>} />
+          <Route path='/login' element={<NotRequireAuth><Login /></NotRequireAuth>} />
+          <Route path='/signup' element={<NotRequireAuth><Signup /></NotRequireAuth>} />
         </Route>
-        <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
-        <Route path="/" element={<RequireAuth><Home /></RequireAuth>} />
+        <Route path='/profile' element={<RequireAuth><Profile /></RequireAuth>} />
+        <Route path='/' element={<RequireAuth><Home /></RequireAuth>} />
       </Routes>
     </BrowserRouter>
   )
