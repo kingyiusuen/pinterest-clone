@@ -1,8 +1,9 @@
 import React from 'react'
+
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+
 import { login, signup } from '../actions/session'
-import FormLayout from '../components/FormLayout/FormLayout'
 
 const SignupFormLayout = () => {
   const dispatch = useDispatch()
@@ -19,31 +20,31 @@ const SignupFormLayout = () => {
   }
 
   return (
-    <FormLayout onSubmit={handleSignup}>
+    <form onSubmit={handleSignup}>
       <input
-        type="text"
-        placeholder="Username"
-        name="username"
+        type='text'
+        placeholder='Username'
+        name='username'
       />
       <input
-        type="text"
-        placeholder="Name"
-        name="name"
+        type='text'
+        placeholder='Name'
+        name='name'
       />
       <input
-        type="password"
-        placeholder="Password"
-        name="password"
+        type='password'
+        placeholder='Password'
+        name='password'
       />
       <button
         class='form__btn form__btn--submit'
-        type="submit"
+        type='submit'
         backgroundColor='red'
       >
         Sign Up
       </button>
       <Link to='/login'>Already a member? Log in</Link>
-    </FormLayout>
+    </form>
   )
 }
 

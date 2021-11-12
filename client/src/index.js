@@ -1,12 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
-import jwtDecode from 'jwt-decode'
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import App from './App';
-import configureStore from './store/store'
-import { setAuthToken, logout } from './actions/session'
+import jwtDecode from 'jwt-decode'
+import { Provider } from 'react-redux'
+
 import './index.css'
+import App from './App'
+import { setAuthToken, logout } from './actions/session'
+import configureStore from './store/store'
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -34,8 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = configureStore()
   }
-
-  store.subscribe(() => console.log(store.getState()))
 
   ReactDOM.render(
     <Provider store={store}>

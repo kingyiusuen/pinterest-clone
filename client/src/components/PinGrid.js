@@ -1,8 +1,10 @@
 import React from 'react'
+
 import Masonry from 'react-masonry-css'
 import { useSelector } from 'react-redux'
-import Pin from '../Pin/Pin'
+
 import './PinGrid.css'
+import Pin from './Pin'
 
 const PinGrid = ({ photoUrls, savedPins }) => {
   const userId = useSelector(state => state.session.user.id)

@@ -61,7 +61,7 @@ usersRouter.post('/login', async (request, response) => {
 
 usersRouter.get(
   '/:id',
-  //passport.authenticate('jwt', { session: false }),
+  passport.authenticate('jwt', { session: false }),
   async (request, response) => {
     const user = await User.findById(request.params.id)
     if (user) {
@@ -73,8 +73,8 @@ usersRouter.get(
 )
 
 usersRouter.put(
-  '/:id/savePin',
-  //passport.authenticate('jwt', { session: false }),
+  '/:id/save-pin',
+  passport.authenticate('jwt', { session: false }),
   async (request, response) => {
     const user = await User.findByIdAndUpdate(
       request.params.id,
@@ -86,8 +86,8 @@ usersRouter.put(
 )
 
 usersRouter.put(
-  '/:id/deletePin',
-  //passport.authenticate('jwt', { session: false }),
+  '/:id/delete-pin',
+  passport.authenticate('jwt', { session: false }),
   async (request, response) => {
     const user = await User.findByIdAndUpdate(
       request.params.id,

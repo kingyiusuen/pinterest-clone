@@ -17,9 +17,9 @@ export const getProfile = async userId => {
 }
 
 export const savePin = async (userId, param) => {
-  return await instance.put(`/${userId}/savePin`, param)
+  return await instance.put(`/${userId}/save-pin`, param)
 }
 
 export const deleteSavedPin = async (userId, param) => {
-  return await instance.put(`/${userId}/deletePin`, param)
+  return await instance.put(`/${userId}/delete-pin`, param)
 }

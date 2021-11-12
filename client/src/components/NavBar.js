@@ -1,13 +1,15 @@
 import React from 'react'
+
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import LogoutIcon from '@mui/icons-material/Logout'
 import PinterestIcon from '@mui/icons-material/Pinterest'
 import SearchIcon from '@mui/icons-material/Search'
 import { useDispatch } from 'react-redux'
 import { Link } from "react-router-dom"
-import { searchPins } from '../../actions/pin'
-import { logout } from '../../actions/session'
+
 import './NavBar.css'
+import { searchPins } from '../actions/pin'
+import { logout } from '../actions/session'
 
 const NavBar = ({ isHome }) => {
   const dispatch = useDispatch()

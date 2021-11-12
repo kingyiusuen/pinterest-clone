@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+
 import ModalUnstyled from '@mui/core/ModalUnstyled'
 import { styled } from '@mui/system'
 import { useDispatch } from 'react-redux'
-import { savePin, deleteSavedPin } from '../../actions/pin'
+
 import './Pin.css'
+import { savePin, deleteSavedPin } from '../actions/pin'
 
 const Dialog = styled(ModalUnstyled)`
   position: fixed;
