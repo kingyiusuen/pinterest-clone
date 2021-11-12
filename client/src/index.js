@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 
 import './index.css'
 import App from './App'
-import { setAuthToken, logout } from './actions/session'
+import { logout, setAuthToken } from './actions/session'
 import configureStore from './store/store'
 
 

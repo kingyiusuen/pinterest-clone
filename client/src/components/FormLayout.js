@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import PinterestIcon from '@mui/icons-material/Pinterest'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import './FormLayout.css'
+import { clearError } from '../actions/session'
 
 const FooterIcon = ({ icon, href }) => {
   return (
@@ -18,6 +20,11 @@ const FooterIcon = ({ icon, href }) => {
 }
 
 const FormLayout = () => {
+  // Clear error messages when switch form
+  const location = useLocation()
+  const dispatch = useDispatch()
+  useEffect(() => dispatch(clearError()), [location, dispatch]);
+
   return (
     <div className='form'>
       <div className='form__header'>

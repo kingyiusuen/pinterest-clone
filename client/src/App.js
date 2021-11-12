@@ -10,7 +10,7 @@ import Profile from './pages/Profile'
 import { RequireAuth, NotRequireAuth } from './routes/routes'
 
 const App = () => {
-  
+
   return (
     <BrowserRouter>
       <Routes>

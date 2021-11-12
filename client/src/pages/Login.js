@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useForm } from "react-hook-form"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import '../components/FormLayout.css'
@@ -11,46 +11,37 @@ const LoginFormLayout = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
 
   const dispatch = useDispatch()
+  const sessionError = useSelector(state => state.sessionError)
 
-  const handleLogin = (event, userData) => {
-    event.preventDefault()
+  const handleLogin = userData => {
     dispatch(login(userData))
   }
 
-  const handleUserLogin = event => {
-    const userData = {
-      username: event.target.username.value,
-      password: event.target.password.value,
-    }
-    handleLogin(event, userData)
-  }
-
-  const handleDemoLogin = event => {
+  const handleDemoLogin = () => {
     const userData = {
       username: 'john.doe',
       password: 'johndoe',
     }
-    handleLogin(event, userData)
+    handleLogin(userData)
   }
 
   return (
-    <form onSubmit={handleSubmit(handleUserLogin)}>
+    <form onSubmit={handleSubmit(handleLogin)}>
       <input
         type='text'
         placeholder='Username'
-        name='username'
-        className={`form__input ${errors.usernameRequired ? 'form__input--error' : ''}`}
-        {...register("usernameRequired", { required: true })}
+        className={`form__input ${errors.username ? 'form__input--error' : ''}`}
+        {...register("username", { required: true })}
       />
-      {errors.usernameRequired && <span className='form__error'>Username is required</span>}
+      {errors.username && <p className='form__error'>Username is required</p>}
       <input
         type='password'
         placeholder='Password'
-        name='password'
-        className={`form__input ${errors.passwordRequired ? 'form__input--error' : ''}`}
-        {...register("passwordRequired", { required: true })}
+        className={`form__input ${errors.password ? 'form__input--error' : ''}`}
+        {...register("password", { required: true })}
       />
-      {errors.passwordRequired && <span className='form__error'>Password is required</span>}
+      {errors.password && <p className='form__error'>Password is required</p>}
+      {sessionError && <p className='form__error'>{sessionError}</p>}
       <button
         type='submit'
         className='form__btn form__btn--submit'
