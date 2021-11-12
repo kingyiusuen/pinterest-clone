@@ -1,13 +1,10 @@
 import React from 'react'
-
 import { useDispatch } from 'react-redux'
-
-import Form from '../components/Form/Form'
-import FormButton from '../components/Form/FormButton'
-import FormLink from '../components/Form/FormLink'
+import { Link } from 'react-router-dom'
 import { login } from '../actions/session'
+import FormLayout from '../components/FormLayout/FormLayout'
 
-const LoginForm = () => {
+const LoginFormLayout = () => {
   const dispatch = useDispatch()
 
   const handleLogin = (event, userData) => {
@@ -32,7 +29,7 @@ const LoginForm = () => {
   }
 
   return (
-    <Form onSubmit={handleUserLogin}>
+    <FormLayout onSubmit={handleUserLogin}>
       <input
         type="text"
         placeholder="Username"
@@ -43,21 +40,23 @@ const LoginForm = () => {
         placeholder="Password"
         name="password"
       />
-      <FormButton
+      <button
+        class='form__btn form__btn--submit'
         type="submit"
         backgroundColor='red'
       >
         Log In
-      </FormButton>
-      <FormButton
+      </button>
+      <button
+        class='form__btn form__btn--demo'
         onClick={handleDemoLogin}
         backgroundColor='blue'
       >
         Demo
-      </FormButton>
-      <FormLink to='/signup'>Not on Pinterest yet? Sign up</FormLink>
-    </Form>
+      </button>
+      <Link to='/signup'>Not on Pinterest yet? Sign up</Link>
+    </FormLayout>
   )
 }
 
-export default LoginForm
+export default LoginFormLayout

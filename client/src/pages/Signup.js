@@ -1,13 +1,10 @@
 import React from 'react'
-
 import { useDispatch } from 'react-redux'
-
-import Form from '../components/Form/Form'
-import FormLink from '../components/Form/FormLink'
-import FormButton from '../components/Form/FormButton'
+import { Link } from 'react-router-dom'
 import { login, signup } from '../actions/session'
+import FormLayout from '../components/FormLayout/FormLayout'
 
-const SignupForm = () => {
+const SignupFormLayout = () => {
   const dispatch = useDispatch()
 
   const handleSignup = (event) => {
@@ -22,7 +19,7 @@ const SignupForm = () => {
   }
 
   return (
-    <Form onSubmit={handleSignup}>
+    <FormLayout onSubmit={handleSignup}>
       <input
         type="text"
         placeholder="Username"
@@ -38,15 +35,16 @@ const SignupForm = () => {
         placeholder="Password"
         name="password"
       />
-      <FormButton
+      <button
+        class='form__btn form__btn--submit'
         type="submit"
         backgroundColor='red'
       >
         Sign Up
-      </FormButton>
-      <FormLink to='/login'>Already a member? Log in</FormLink>
-    </Form>
+      </button>
+      <Link to='/login'>Already a member? Log in</Link>
+    </FormLayout>
   )
 }
 
-export default SignupForm
+export default SignupFormLayout

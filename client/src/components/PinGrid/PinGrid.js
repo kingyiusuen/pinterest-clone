@@ -1,22 +1,12 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import styled from 'styled-components'
 import Masonry from 'react-masonry-css'
-import Pin from './Pin'
-
-const PinGridWrapper = styled.div`
-  padding: 0;
-  margin-top: 15px;
-
-  .masonry-grid {
-    display: flex;
-    width: auto;
-  }
-`
+import { useSelector } from 'react-redux'
+import Pin from '../Pin/Pin'
+import './PinGrid.css'
 
 const PinGrid = ({ photoUrls, savedPins }) => {
   const userId = useSelector(state => state.session.user.id)
-
+ 
   const breakpoints = { default: 4 }
   const baseWidth = 503
   const increment = 252
@@ -25,7 +15,7 @@ const PinGrid = ({ photoUrls, savedPins }) => {
   }
 
   return (
-    <PinGridWrapper>
+    <div>
       {
         photoUrls &&
         <Masonry breakpointCols={breakpoints} className='masonry-grid'>
@@ -41,7 +31,7 @@ const PinGrid = ({ photoUrls, savedPins }) => {
           }
         </Masonry>
       }
-    </PinGridWrapper>
+    </div>
   )
 }
 

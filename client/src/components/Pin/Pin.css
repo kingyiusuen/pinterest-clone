@@ -1,0 +1,63 @@
+.pin__wrapper {
+  display: flex;
+}
+
+.pin__container {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.pin__container img {
+  display: block;
+  cursor: zoom-in;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.pin__container:hover img {
+  filter: brightness(70%);
+}
+
+.pin__container button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.pin__container button:hover {
+  opacity: 1;
+}
+
+.dialog__container {
+  background-color: white;
+  padding: 16px 16px 6px 16px;
+  border-radius: 16px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.save-btn {
+  font-weight: 700;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 24px;
+  height: 48px;
+  padding: 0 17px;
+  margin: 10px;
+}
+
+.save-btn--active {
+  background-color: black;
+}
+
+.save-btn--inactive {
+  background-color: var(--red);
+}
+
+.save-btn--inactive:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+}

@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
-
 import { useDispatch, useSelector } from 'react-redux'
-
+import { getSavedPins, getRandomPins } from '../actions/pin'
 import NavBar from '../components/NavBar/NavBar'
 import PinGrid from '../components/PinGrid/PinGrid'
-import { getSavedPins, getRandomPins } from '../actions/pin'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -19,7 +17,7 @@ const Home = () => {
 
   return (
     <div>
-      <NavBar />
+      <NavBar isHome />
       <PinGrid photoUrls={photoUrls} savedPins={savedPins} />
     </div>
   )

@@ -1,0 +1,50 @@
+.header__container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.avatar__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.avatar {
+  font-size: 40px;
+  font-weight: 700;
+  color: black;
+  width: 120px;
+  height: 120px;
+  background-color: var(--lightgray);
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.username {
+  color: #111;
+  margin: 4px 0;
+}

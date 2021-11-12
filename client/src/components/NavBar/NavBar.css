@@ -1,0 +1,104 @@
+.nav-bar {
+  display: flex;
+  height: 56px;
+  padding: 16px 16px 16px 16px;
+}
+
+.nav-bar__icon .MuiSvgIcon-root {
+  font-size: 36px;
+  padding: 8px;
+}
+
+.nav-bar__icon .MuiSvgIcon-root:hover {
+  border-radius: 50%;
+  background-color: var(--lightgray);
+  cursor: pointer;
+}
+
+.nav-bar__icon--red .MuiSvgIcon-root {
+  color: var(--red);
+}
+
+.nav-bar__icon--gray .MuiSvgIcon-root {
+  color: var(--gray);
+}
+
+.nav-bar__btn {
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 24px;
+  height: 48px;
+  padding: 0 17px;
+}
+
+.nav-bar__btn a {
+  text-decoration: none;
+}
+
+.nav-bar__btn--active {
+  background-color: black;
+}
+
+.nav-bar__btn--active a {
+  color: white;
+}
+
+.nav-bar__btn--inactive {
+  background-color: white;
+}
+
+.nav-bar__btn--inactive a {
+  color: black;
+}
+
+.nav-bar__btn--inactive:hover {
+  background-color: var(--lightgray);
+}
+
+.nav-bar__search-box {
+  padding: 0 10px;
+  margin: 0 10px;
+  background-color: var(--lightgray);
+  display: flex;
+  height: 48px;
+  width: 100%;
+  border-radius: 50px;
+  border: none;
+  padding-left: 10px;
+  align-items: center;
+}
+
+.nav-bar__search-box:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.04) 0 0);
+}
+
+.nav-bar__search-box .MuiSvgIcon-root {
+  font-size: 28px;
+  padding: 8px;
+}
+
+.nav-bar__search-box form {
+  display: flex;
+  flex: 1;
+}
+
+.nav-bar__search-box input {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  font-size: 16px;
+}
+
+.nav-bar__search-box input:focus {
+  outline: none;
+}
+
+.nav-bar__search-box button {
+  display: none;
+}
+
+.nav-bar__icon-group {
+  display: flex;
+}
