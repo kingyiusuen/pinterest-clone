@@ -22,14 +22,14 @@ const NavBar = ({ isHome }) => {
   const handleLogout = () => dispatch(logout())
 
   return (
-    <div class='nav-bar'>
-      <div class='nav-bar__icon nav-bar__icon--red'>
+    <div className='nav-bar'>
+      <div className='nav-bar__icon nav-bar__icon--red'>
         <Link to="/"><PinterestIcon /></Link>
       </div>
-      <button class={isHome ? 'nav-bar__btn nav-bar__btn--active' : 'nav-bar__btn nav-bar__btn--inactive'}>
+      <button className={`nav-bar__btn ${isHome ? 'nav-bar__btn--active' : 'nav-bar__btn--inactive'}`}>
         <Link to='/'>Home</Link>
       </button>
-      <div class='nav-bar__search-box'>
+      <div className='nav-bar__search-box'>
         <SearchIcon />
         <form onSubmit={handleSearch}>
           <input
@@ -40,13 +40,13 @@ const NavBar = ({ isHome }) => {
           <button type='submit'></button>
         </form>
       </div>
-      <div class='nav-bar__icon-group'>
-        <div class='nav-bar__icon nav-bar__icon--gray'>
+      <div className='nav-bar__icon-group'>
+        <div className='nav-bar__icon nav-bar__icon--gray'>
           <Link to='/profile'>
             <AccountCircleIcon />
           </Link>
         </div>
-        <div class='nav-bar__icon nav-bar__icon--gray' onClick={handleLogout}>
+        <div className='nav-bar__icon nav-bar__icon--gray' onClick={handleLogout}>
           <LogoutIcon />
         </div>
       </div>

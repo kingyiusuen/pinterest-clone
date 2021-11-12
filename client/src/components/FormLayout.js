@@ -19,18 +19,18 @@ const FooterIcon = ({ icon, href }) => {
 
 const FormLayout = () => {
   return (
-    <div class='form'>
-      <div class='form__header'>
-        <div class='form__logo'>
+    <div className='form'>
+      <div className='form__header'>
+        <div className='form__logo'>
           <PinterestIcon />
         </div>
         <h1>Welcome to Pinterest</h1>
         <h4>Find new ideas to try</h4>
       </div>
-      <div class='form__body'>
+      <div className='form__body'>
         <Outlet />
       </div>
-      <div class='form__footer'>
+      <div className='form__footer'>
         <FooterIcon
           icon={<GitHubIcon />}
           href='https://www.github.com/kingyiusuen'

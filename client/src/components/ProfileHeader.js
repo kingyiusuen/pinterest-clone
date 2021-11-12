@@ -4,14 +4,14 @@ import './ProfileHeader.css'
 
 const ProfileHeader = ({ user }) => {
   return (
-    <div class='header__container'>
-      <div class='avatar__wrapper'>
-        <div class='avatar'>
+    <div className='header__container'>
+      <div className='avatar__wrapper'>
+        <div className='avatar'>
           {user.name.charAt(0).toUpperCase()}
         </div>
       </div>
       <h1>{user.name}</h1>
-      <span class='username'>@{user.username}</span>
+      <span className='username'>@{user.username}</span>
     </div>
   )
 }

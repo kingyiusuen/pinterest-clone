@@ -43,7 +43,7 @@ const SaveButton = ({ userId, photoUrl, isSaved }) => {
   return (
     <button
       onClick={handleOnClick}
-      class={isSaved ? 'save-btn save-btn--active' : 'save-btn save-btn--inactive'}
+      className={`save-btn ${isSaved ? 'save-btn--active' : 'save-btn--inactive'}`}
     >
       {isSaved ? 'Saved' : 'Save'}
     </button>
@@ -59,9 +59,9 @@ const Pin = ({ userId, photoUrl, isSaved }) => {
 
   return (
     <div>
-      <div class='pin__wrapper'>
+      <div className='pin__wrapper'>
         <div
-          class='pin__container'
+          className='pin__container'
           onMouseOver={() => setShowButton(true)}
           onMouseLeave={() => setShowButton(false)}
         >
@@ -79,7 +79,7 @@ const Pin = ({ userId, photoUrl, isSaved }) => {
         onClose={handleCloseDialog}
         BackdropComponent={Backdrop}
       >
-        <div class='dialog__container'>
+        <div className='dialog__container'>
           <img src={`${photoUrl}&w=400`} alt='' />
           <SaveButton userId={userId} photoUrl={photoUrl} isSaved={isSaved} />
         </div>

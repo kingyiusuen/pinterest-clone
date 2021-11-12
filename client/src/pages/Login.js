@@ -1,11 +1,15 @@
 import React from 'react'
 
+import { useForm } from "react-hook-form"
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import '../components/FormLayout.css'
 import { login } from '../actions/session'
 
 const LoginFormLayout = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm()
+
   const dispatch = useDispatch()
 
   const handleLogin = (event, userData) => {
@@ -30,28 +34,32 @@ const LoginFormLayout = () => {
   }
 
   return (
-    <form onSubmit={handleUserLogin}>
+    <form onSubmit={handleSubmit(handleUserLogin)}>
       <input
         type='text'
         placeholder='Username'
         name='username'
+        className={`form__input ${errors.usernameRequired ? 'form__input--error' : ''}`}
+        {...register("usernameRequired", { required: true })}
       />
+      {errors.usernameRequired && <span className='form__error'>Username is required</span>}
       <input
         type='password'
         placeholder='Password'
         name='password'
+        className={`form__input ${errors.passwordRequired ? 'form__input--error' : ''}`}
+        {...register("passwordRequired", { required: true })}
       />
+      {errors.passwordRequired && <span className='form__error'>Password is required</span>}
       <button
-        class='form__btn form__btn--submit'
         type='submit'
-        backgroundColor='red'
+        className='form__btn form__btn--submit'
       >
         Log In
       </button>
       <button
-        class='form__btn form__btn--demo'
         onClick={handleDemoLogin}
-        backgroundColor='blue'
+        className='form__btn form__btn--demo'
       >
         Demo
       </button>
