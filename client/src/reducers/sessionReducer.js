@@ -2,7 +2,7 @@ import { SET_CURRENT_USER } from '../actions/session'
 
 const INITIAL_STATE = {
   isAuthenticated: false,
-  user: {}
+  user: {},
 }
 
 const rootReducer = (state = INITIAL_STATE, action) => {
@@ -11,7 +11,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
       return {
         // Turn an empty object into false or an object with keys to be true
         isAuthenticated: !!(Object.keys(action.user).length),
-        user: action.user
+        user: action.user,
       }
     default:
       return state

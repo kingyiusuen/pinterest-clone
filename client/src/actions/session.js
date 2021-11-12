@@ -14,7 +14,7 @@ export const setAuthToken = token => {
 
 export const setCurrentUser = user => ({
   type: SET_CURRENT_USER,
-  user
+  user,
 })
 
 export const signup = userData => async dispatch => {

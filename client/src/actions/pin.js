@@ -11,7 +11,7 @@ export const getSavedPins = userId => async dispatch => {
   const response = await userService.getProfile(userId)
   dispatch({
     type: GET_SAVED_PINS,
-    photoUrls: response.data.savedPins
+    photoUrls: response.data.savedPins,
   })
 }
 
@@ -20,7 +20,7 @@ export const searchPins = query => async dispatch => {
   const photoUrls = response.data.results.map(photo => photo.urls.raw)
   dispatch({
     type: SEARCH_PINS,
-    photoUrls: photoUrls
+    photoUrls: photoUrls,
   })
 }
 
@@ -29,7 +29,7 @@ export const getRandomPins = () => async dispatch => {
   const photoUrls = response.data.map(photo => photo.urls.raw)
   dispatch({
     type: GET_RANDOM_PINS,
-    photoUrls: photoUrls
+    photoUrls: photoUrls,
   })
 }
 
@@ -37,7 +37,7 @@ export const savePin = (userId, photoUrl) => async dispatch => {
   await userService.savePin(userId, { photoUrl })
   dispatch({
     type: SAVE_PIN,
-    photoUrl: photoUrl
+    photoUrl: photoUrl,
   })
 }
 
@@ -45,6 +45,6 @@ export const deleteSavedPin = (userId, photoUrl) => async dispatch => {
   await userService.deleteSavedPin(userId, { photoUrl })
   dispatch({
     type: DELETE_SAVED_PIN,
-    photoUrl: photoUrl
+    photoUrl: photoUrl,
   })
 }
