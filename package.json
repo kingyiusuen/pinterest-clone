@@ -7,7 +7,7 @@
     "start": "cd server && node index.js",
     "client": "cd client && npm start",
     "server": "cd server && nodemon index.js",
-    "dev": "concurrently \"npm run server\" \"npm run start\"",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "lint": "eslint .",
     "heroku-postbuild": "cd client && npm install --production --no-shrinkwrap && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
