@@ -10,20 +10,20 @@ import PinGrid from "../components/PinGrid";
 const Search = () => {
   const dispatch = useDispatch();
   const params = useParams();
-  const session = useSelector((state) => state.session);
+  const user = useSelector((state) => state.session.user);
+  const userId = user.id;
 
   useEffect(() => {
-    dispatch(getSavedPins(session.user.id));
+    dispatch(getSavedPins({ userId: userId, useAsFeed: false }));
     dispatch(searchPins(params.query));
-  }, [dispatch, params.query, session.user.id]);
+  }, [dispatch, params.query, userId]);
 
-  const photoUrls = useSelector((state) => state.pin.display);
-  const savedPins = useSelector((state) => state.pin.saved);
+  const { feed, saved } = useSelector((state) => state.pin);
 
   return (
     <div>
       <NavBar query={params.query} />
-      <PinGrid photoUrls={photoUrls} savedPins={savedPins} />
+      <PinGrid userId={userId} photoUrls={feed} savedPins={saved} />
     </div>
   );
 };

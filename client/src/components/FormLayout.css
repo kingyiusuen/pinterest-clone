@@ -43,6 +43,7 @@
 .form__input {
   width: 100%;
   font-size: 16px;
+  text-align: left;
   height: 48px;
   border: 1px solid;
   border-color: #ddd;

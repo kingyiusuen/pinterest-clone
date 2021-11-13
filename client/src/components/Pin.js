@@ -32,7 +32,6 @@ const Backdrop = styled("div")`
 
 const SaveButton = ({ userId, photoUrl, isSaved }) => {
   const dispatch = useDispatch();
-
   const handleOnClick = (event) => {
     event.preventDefault();
     isSaved

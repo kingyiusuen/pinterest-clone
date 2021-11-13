@@ -22,7 +22,10 @@ const Profile = () => {
     <div>
       <NavBar />
       <ProfileHeader user={user} />
-      <PinGrid userId={userId} photoUrls={feed} savedPins={saved} />
+      {feed.length
+        ? <PinGrid userId={userId} photoUrls={feed} savedPins={saved} />
+        : <h3>This user has not saved any pins.</h3>
+      }
     </div>
   );
 };
