@@ -9,7 +9,7 @@
     "server": "cd server && nodemon index.js",
     "dev": "concurrently \"npm run server\" \"npm run start\"",
     "lint": "eslint .",
-    "build-client": "rm -rf client/build && cd client && npm run build --prod",
+    "heroku-postbuild": "cd client && npm install --production --no-shrinkwrap && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
