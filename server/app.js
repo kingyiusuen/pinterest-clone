@@ -1,4 +1,3 @@
-const config = require("./utils/config");
 const express = require("express");
 const path = require("path");
 const passport = require("passport");
@@ -10,9 +9,9 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-logger.info("connecting to", config.MONGODB_URI);
+logger.info("connecting to", process.env.MONGODB_URI);
 mongoose
-  .connect(config.MONGODB_URI)
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     logger.info("connected to MongoDB");
   })
@@ -35,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(buildPath));
   app.get("*", (request, response) => {
     response.sendFile(path.join(buildPath, "index.html"));
-  })
+  });
 }
 
 app.use(middleware.unknownEndpoint);

@@ -72,7 +72,7 @@ usersRouter.post("/login", async (request, response) => {
     name: user.name,
   };
 
-  const token = jwt.sign(payload, process.env.SECRET, { expiresIn: 3600 });
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 });
 
   return response.status(200).send({ token: `Bearer ${token}` });
 });
