@@ -18,7 +18,3 @@ jobs:
           healthcheck: "https://pinterest-clone-ksuen.herokuapp.com/health"
           delay: 5
           rollbackonhealthcheckfailed: true
-        env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
