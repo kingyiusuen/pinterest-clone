@@ -26,7 +26,9 @@ const SignupFormLayout = () => {
         <input
           type="text"
           placeholder="Username"
-          className={`form__input ${errors.username ? "form__input--error" : ""}`}
+          className={`form__input ${
+            errors.username ? "form__input--error" : ""
+          }`}
           {...register("username", { required: true })}
         />
         {errors.username && <p className="form__error">Username is required</p>}
@@ -40,7 +42,9 @@ const SignupFormLayout = () => {
         <input
           type="password"
           placeholder="Password"
-          className={`form__input ${errors.password ? "form__input--error" : ""}`}
+          className={`form__input ${
+            errors.password ? "form__input--error" : ""
+          }`}
           {...register("password", { required: true })}
         />
         {errors.password && <p className="form__error">Password is required</p>}
