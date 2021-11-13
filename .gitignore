@@ -6,7 +6,7 @@ node_modules
 server/requests
 
 # production
-/build
+build
 
 # misc
 .DS_Store

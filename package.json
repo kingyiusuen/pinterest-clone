@@ -4,10 +4,12 @@
   "description": "",
   "main": "./server/index.js",
   "scripts": {
-    "start": "cd client && npm start",
+    "start": "cd server && node index.js",
+    "client": "cd client && npm start",
     "server": "cd server && nodemon index.js",
     "dev": "concurrently \"npm run server\" \"npm run start\"",
     "lint": "eslint .",
+    "build-client": "rm -rf client/build && cd client && npm run build --prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -25,7 +27,7 @@
     "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.2.0",
+    "eslint": "^7.23.0",
     "eslint-config-prettier": "^8.3.0",
     "nodemon": "^2.0.14",
     "prettier": "2.4.1"
