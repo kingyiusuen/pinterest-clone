@@ -1,41 +1,35 @@
 import {
-  GET_SAVED_PINS,
-  GET_RANDOM_PINS,
-  SEARCH_PINS,
+  FETCH_SAVED_PINS,
+  SET_FEED,
   SAVE_PIN,
   DELETE_SAVED_PIN,
 } from "../actions/pin";
 
 const INITIAL_STATE = {
-  display: [],
+  feed: [],
   saved: [],
 };
 
 const pinReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case GET_SAVED_PINS:
+    case FETCH_SAVED_PINS:
       return {
-        display: state.display,
+        feed: state.feed,
         saved: action.photoUrls,
       };
-    case GET_RANDOM_PINS:
+    case SET_FEED:
       return {
-        display: action.photoUrls,
-        saved: state.saved,
-      };
-    case SEARCH_PINS:
-      return {
-        display: action.photoUrls,
+        feed: action.photoUrls,
         saved: state.saved,
       };
     case SAVE_PIN:
       return {
-        display: state.display,
+        feed: state.feed,
         saved: [...state.saved, action.photoUrl],
       };
     case DELETE_SAVED_PIN:
       return {
-        display: state.display,
+        feed: state.feed,
         saved: state.saved.filter((url) => url !== action.photoUrl),
       };
     default:

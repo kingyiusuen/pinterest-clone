@@ -36,8 +36,8 @@ const SaveButton = ({ userId, photoUrl, isSaved }) => {
   const handleOnClick = (event) => {
     event.preventDefault();
     isSaved
-      ? dispatch(deleteSavedPin(userId, photoUrl))
-      : dispatch(savePin(userId, photoUrl));
+      ? dispatch(deleteSavedPin({ userId, photoUrl }))
+      : dispatch(savePin({ userId, photoUrl }));
   };
 
   return (

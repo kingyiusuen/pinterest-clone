@@ -9,19 +9,20 @@ import ProfileHeader from "../components/ProfileHeader";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const session = useSelector((state) => state.session);
+  const user = useSelector((state) => state.session.user);
+  const userId = user.id;
 
   useEffect(() => {
-    dispatch(getSavedPins(session.user.id));
-  }, [dispatch, session.user.id]);
+    dispatch(getSavedPins({ userId, setAsFeed: true }));
+  }, [dispatch, userId]);
 
-  const savedPins = useSelector((state) => state.pin.saved);
+  const { feed, saved } = useSelector((state) => state.pin);
 
   return (
     <div>
       <NavBar />
-      <ProfileHeader user={session.user} />
-      <PinGrid photoUrls={savedPins} savedPins={savedPins} />
+      <ProfileHeader user={user} />
+      <PinGrid userId={userId} photoUrls={feed} savedPins={saved} />
     </div>
   );
 };
