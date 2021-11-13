@@ -4,11 +4,6 @@ const usersRouter = require("express").Router();
 const passport = require("passport");
 const User = require("../models/user");
 
-usersRouter.get("/", async (request, response) => {
-  const users = await User.find({});
-  return response.json(users);
-});
-
 usersRouter.post("/signup", async (request, response) => {
   const body = request.body;
 
