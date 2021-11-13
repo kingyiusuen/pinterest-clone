@@ -4,9 +4,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import FormLayout from "./components/FormLayout";
 import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import Signup from "./pages/Signup";
+import Search from "./pages/Search";
 import { RequireAuth, NotRequireAuth } from "./routes/routes";
 
 const App = () => {
@@ -36,6 +37,14 @@ const App = () => {
           element={
             <RequireAuth>
               <Profile />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/search/:query"
+          element={
+            <RequireAuth>
+              <Search />
             </RequireAuth>
           }
         />

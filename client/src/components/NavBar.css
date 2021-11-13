@@ -23,37 +23,38 @@
   color: var(--gray);
 }
 
-.nav-bar__btn {
+.nav-bar__link {
   font-weight: 700;
   border: none;
   cursor: pointer;
   font-size: 16px;
-  border-radius: 24px;
+  display: flex;
+}
+
+.nav-bar__link a {
   height: 48px;
+  line-height: 48px;
   padding: 0 17px;
+  border-radius: 24px;
 }
 
-.nav-bar__btn a {
-  text-decoration: none;
-}
-
-.nav-bar__btn--active {
+.nav-bar__link--active {
   background-color: black;
 }
 
-.nav-bar__btn--active a {
+.nav-bar__link--active {
   color: white;
 }
 
-.nav-bar__btn--inactive {
+.nav-bar__link--inactive {
   background-color: white;
 }
 
-.nav-bar__btn--inactive a {
+.nav-bar__link--inactive {
   color: black;
 }
 
-.nav-bar__btn--inactive:hover {
+.nav-bar__link--inactive:hover {
   background-color: var(--lightgray);
 }
 

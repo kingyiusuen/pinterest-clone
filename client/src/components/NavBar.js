@@ -5,18 +5,18 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import "./NavBar.css";
-import { searchPins } from "../actions/pin";
 import { logout } from "../actions/session";
 
-const NavBar = ({ isHome }) => {
+const NavBar = ({ query }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSearch = (event) => {
     event.preventDefault();
-    dispatch(searchPins(event.target.query.value));
+    navigate(`/search/${event.target.query.value}`);
   };
 
   const handleLogout = () => dispatch(logout());
@@ -28,17 +28,25 @@ const NavBar = ({ isHome }) => {
           <PinterestIcon />
         </Link>
       </div>
-      <button
-        className={`nav-bar__btn ${
-          isHome ? "nav-bar__btn--active" : "nav-bar__btn--inactive"
-        }`}
-      >
-        <Link to="/">Home</Link>
-      </button>
+      <div className="nav-bar__link">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "nav-bar__link--active" : "nav-bar__link--inactive"
+          }
+        >
+          Home
+        </NavLink>
+      </div>
       <div className="nav-bar__search-box">
         <SearchIcon />
         <form onSubmit={handleSearch}>
-          <input type="text" placeholder="Search" name="query" />
+          <input
+            type="text"
+            placeholder="Search"
+            name="query"
+            defaultValue={query || ""}
+          />
           <button type="submit"></button>
         </form>
       </div>
