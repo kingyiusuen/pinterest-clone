@@ -59,7 +59,7 @@ You can try it out online at https://pinterest-clone-ksuen.herokuapp.com/.
   - Go to "Network Access". Define the IP addresses that are allowed access to the database. You can simply allow access from all IP addresses.
   - Go to "Databases". Click "Connect" and then "Connect your application" to get the MongoDB URI.
 - Sign up for a developer account in [Unsplash](https://unsplash.com/developers). Create a new application to get the access key.
-- Create two `.env` files, one in the project root directory, one in `client`, following the format of the corresponding `.evn.example` file. Fill in the details.
+- Create two `.env` files, one in `server`, one in `client`, following the format of the corresponding `.evn.example` file. Fill in the details.
 
 ## Running the App in Development Mode
 
