@@ -52,7 +52,7 @@ You can try it out online at https://pinterest-clone-ksuen.herokuapp.com/.
 
 - Clone the repo.
 - Run `npm install` to install dependencies for the server.
-- Run `cd client` and then `npm install` to install dependecies for the client.
+- Run `cd client` and then `npm install` to install dependencies for the client.
 - Create a free account in [MongoDB Atlas](https://www.mongodb.com/atlas/database).
   - Create a cluster (may take 10 minutes).
   - Go to the "Database Access" tab on the sidebar and create user credentials for the database.
